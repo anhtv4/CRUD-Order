@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<head>
+<meta charset="UTF-8">
+<title>Orders</title>
+</head>
+<body>
+	<div align="center">
+		<h1>Order List</h1>
+		<br /><br />
+		<form th:action="@{/order}">
+			<input type="text" th:name="id" /> <input type="submit" value="Search"/>
+		</form>
+		<br /><br />
+		<table border="1" cellpadding="10">
+			<thead>
+				<tr>
+					<th>Order ID</th>
+					<th>Create At</th>
+					<th>Total</th>
+					<th>User Name</th>
+					<th>Status</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="order : ${listOrders}">
+					<td th:text="${order.id}">Product ID</td>
+					<td th:text="${order.createAt}">Name</td>
+					<td th:text="${order.total}">Brand</td>
+					<td th:text="${order.userId}">Made in</td>
+					<td th:text="${order.status}">Price</td>
+					<td><a th:href="@{'/edit/' + ${order.id}}">Edit</a>
+						&nbsp;&nbsp;&nbsp; <a th:href="@{'/delete/' + ${order.id}}">Delete</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
